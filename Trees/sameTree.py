@@ -1,30 +1,42 @@
-# are the 2 tree similar
 class TreeNode:
     def __init__(self, data):
         self.data = data
         self.left = None
         self.right = None
-    
 
-def isSameTree(root1, root2):
-    
-    if root1 == None and root2 == None:
+
+def isSameTree(rootA, rootB):
+
+    if rootA is None and rootB is None:
         return True
+    elif rootA and rootB:
+        # if both root exist
+        return (rootA.data == rootB.data and isSameTree(rootA.left, rootB.left) and isSameTree(rootA.right, rootB.right))
+    else:
+        # if any of the root is empty
+        return False
     
-    if root1 and root2:
-        if root1.data == root2.data and isSameTree(root1.left, root2.left) and isSameTree(root1.right, root2.right):
-            return True
-        else:
-            return False
+def printTree(root):
+    if root == None:
+        return
     
+    print(root.data, end=" ")
+    printTree(root.left)
+    printTree(root.right)
+
 
 if __name__ == "__main__":
-    root1 = TreeNode(1)
-    root1.left = TreeNode(2)
-    root1.right = TreeNode(3)
+    rootA = TreeNode(1)
+    rootA.left = TreeNode(2)
+    rootA.right = TreeNode(3)
 
-    root2 = TreeNode(1)
-    root2.left = TreeNode(2)
-    root2.right = TreeNode(3)
+    rootB = TreeNode(1)
+    rootB.left = TreeNode(2)
+    rootB.right = TreeNode(3)
 
-    print(isSameTree(root1, root2))
+
+    print(isSameTree(rootA, rootB))
+
+
+
+        
